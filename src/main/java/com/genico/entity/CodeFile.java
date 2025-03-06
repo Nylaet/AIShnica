@@ -1,15 +1,14 @@
 package com.genico.entity;
-
 import com.genico.enums.DevStatus;
 import jakarta.persistence.*;
 import lombok.Data;
-
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Data
-public class Project {
+public class CodeFiles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,18 +18,14 @@ public class Project {
     private String description;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private String filePath;
-    private String gitUrl;
+    private String filePatch;
 
     @Enumerated(EnumType.STRING)
     private DevStatus developStatus;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<CodeFile> codeFiles;
+    @Column(columnDefinition = "TEXT") // Для хранения больших объемов текста
+    private String code;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<ConversationHistory> conversationHistory;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<AI> connectedAI;
 }
