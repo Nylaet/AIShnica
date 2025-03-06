@@ -1,5 +1,7 @@
 package com.genico.entity;
 
+import java.util.List;
+
 public interface AIClient {
     String getName();
     String getDescription();
